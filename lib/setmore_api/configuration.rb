@@ -12,5 +12,6 @@ module SetmoreApi
 
     attr_accessor :refreash_token
     attr_accessor :access_token    
+    attr_accessor :token_expire_time
   end
 end
