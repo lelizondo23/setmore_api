@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name = 'setmore_api'
-  gem.version = "0.0.1"
+  gem.version = "1.0.1"
   gem.date = '2019-01-15'
   gem.authors     = ['lelizondo23']
   gem.summary = 'Gem for the Setmore API'
