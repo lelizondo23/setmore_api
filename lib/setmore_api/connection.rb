@@ -1,10 +1,10 @@
 module SetmoreApi
   class Connection
-    
+
     SETMORE_URI= 'https://developer.setmore.com/api/v1'
 
     def initialize
-      fail 'SetmoreApi not configured yet!' unless SetmoreApi.configuration && SetmoreApi.configuration.refreash_token
+      fail 'SetmoreApi not configured yet!' unless SetmoreApi.configuration && SetmoreApi.configuration.refresh_token
     end
 
     def execute params,http_request_method

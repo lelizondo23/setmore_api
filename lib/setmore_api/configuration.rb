@@ -10,8 +10,8 @@ module SetmoreApi
 
   class Configuration
 
-    attr_accessor :refreash_token
-    attr_accessor :access_token    
+    attr_accessor :refresh_token
+    attr_accessor :access_token
     attr_accessor :token_expire_time
   end
 end
