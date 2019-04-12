@@ -25,7 +25,7 @@ require 'setmore_api'
 
 SetmoreApi.configure do |config|
   # Required refreash token
-  config.refreash_token = 'REFREASH_TOKEN'
+  config.refresh_token = 'refresh_token'
 end
 ```
 
@@ -67,10 +67,10 @@ staff_response = staff.fetch_all
 #double_booking	boolean	false
 #slot_limit		int		false
 slots = SetmoreApi::TimeSlot.new
-slots_attributes = 
+slots_attributes =
 {
-  staff_key: "xxxxxxxx",      
-  service_key: "xxxxxxxx",    
+  staff_key: "xxxxxxxx",
+  service_key: "xxxxxxxx",
   selected_date: "dd/mm/yyyy",
   off_hours: false
 }
@@ -139,9 +139,9 @@ get_customer = customer.get_details get_customer_params
 #customerDetails  String  false (optional)
 appoitnemnts = SetmoreApi::Appointment.new
 staff_params = {
-  staff_key: "xxxxxxxx", 
+  staff_key: "xxxxxxxx",
   startDate: Date.today.strftime("%d-%m-%Y"),
-  endDate: Date.today.strftime("%d-%m-%Y") 
+  endDate: Date.today.strftime("%d-%m-%Y")
 }
 appoitnemnts.get_for_staff(staff_params)
 ```
