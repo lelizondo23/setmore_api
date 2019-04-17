@@ -54,20 +54,28 @@ module SetmoreApi
       fail 'Required params missing' unless (appointment_query_params[:staff_key] && appointment_query_params[:startDate] &&
         appointment_query_params[:endDate])
 
-      params = {
-        :request_path => (REQUEST_PATH + "s"),
-        :headers => {
-          'Authorization' => "Bearer #{SetmoreApi.configuration.access_token}",
-          'Content-Type' => 'application/json'
-        },
-        :query_params => appointment_query_params
-      }
+      appointments = []
+      next_page = nil
 
-      response = Connection.new.execute(params,'Get')
+      begin
+        params = {
+          :request_path => (REQUEST_PATH + "s"),
+          :headers => {
+            'Authorization' => "Bearer #{SetmoreApi.configuration.access_token}",
+            'Content-Type' => 'application/json'
+          },
+          :query_params => appointment_query_params.merge(cursor: next_page)
+        }
 
-      fail "Unable to get appointment, error: #{response['error']} , msg: #{response['msg']}" unless response && response['response'] && response['data']
+        response = Connection.new.execute(params,'Get')
+        next_page = response['data']['cursor']
 
-      response['data']['appointments']
+        fail "Unable to get appointment, error: #{response['error']} , msg: #{response['msg']}" unless response && response['response'] && response['data']
+
+        appointments << response['data']['appointments']
+      end while next_page
+
+      appointments.flatten
     end
 
   end
