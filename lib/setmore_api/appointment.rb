@@ -68,10 +68,9 @@ module SetmoreApi
         }
 
         response = Connection.new.execute(params,'Get')
-        next_page = response['data']['cursor']
-
         fail "Unable to get appointment, error: #{response['error']} , msg: #{response['msg']}" unless response && response['response'] && response['data']
 
+        next_page = response['data']['cursor']
         appointments << response['data']['appointments']
       end while next_page
 
